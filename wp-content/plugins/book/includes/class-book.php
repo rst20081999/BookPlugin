@@ -175,7 +175,8 @@ class Book {
   $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
   $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
   $this->loader->add_action('init', $plugin_public, 'Custom_Post_Book');
-  $this->loader->add_action('init', $plugin_public, 'wporg_register_taxonomy_course' );
+  $this->loader->add_action('init', $plugin_public, 'register_custom_herachical_taxonomy' );
+  $this->loader->add_action('init', $plugin_public, 'register_custom_non_herachical_taxonomy' );
 
 
  }

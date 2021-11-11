@@ -158,19 +158,43 @@ public function Custom_Post_Book()
         // Registering your Custom Post Type
         register_post_type('Books', $args);
 }
-function wporg_register_taxonomy_course() {
+public function register_custom_herachical_taxonomy() {
 	$labels = array(
-		'name'              => _x( 'Courses', 'taxonomy general name' ),
-		'singular_name'     => _x( 'Course', 'taxonomy singular name' ),
-		'search_items'      => __( 'Search Courses' ),
-		'all_items'         => __( 'All Courses' ),
-		'parent_item'       => __( 'Parent Course' ),
-		'parent_item_colon' => __( 'Parent Course:' ),
-		'edit_item'         => __( 'Edit Course' ),
-		'update_item'       => __( 'Update Course' ),
-		'add_new_item'      => __( 'Add New Course' ),
-		'new_item_name'     => __( 'New Course Name' ),
-		'menu_name'         => __( 'Course' ),
+		'name'              => _x( ' Book Categories', 'taxonomy general name' ),
+		'singular_name'     => _x( ' Book Category', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search  Book Categories' ),
+		'all_items'         => __( 'All  Book Categories' ),
+		'parent_item'       => __( 'Parent  Book Category' ),
+		'parent_item_colon' => __( 'Parent  Book Category:' ),
+		'edit_item'         => __( 'Edit  Book Category' ),
+		'update_item'       => __( 'Update  Book Category' ),
+		'add_new_item'      => __( 'Add New  Book Category' ),
+		'new_item_name'     => __( 'New  Book Category Name' ),
+		'menu_name'         => __( ' Book Category' ),
+	);
+	$args   = array(
+		'hierarchical'      => true, // make it hierarchical (like categories)
+		'labels'            => $labels,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => [ 'slug' => 'course' ],
+	);
+	register_taxonomy( 'course', [ 'book' ], $args );
+}
+public function register_custom_non_herachical_taxonomy() {
+	$labels = array(
+		'name'              => _x( ' Book Tag', 'taxonomy general name' ),
+		'singular_name'     => _x( ' Book Tags', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search  Book Tags' ),
+		'all_items'         => __( 'All  Book Tags' ),
+		'parent_item'       => __( 'Parent  Book Tag' ),
+		'parent_item_colon' => __( 'Parent  Book Tag:' ),
+		'edit_item'         => __( 'Edit  Book Tag' ),
+		'update_item'       => __( 'Update  Book Tag' ),
+		'add_new_item'      => __( 'Add New  Book Tag' ),
+		'new_item_name'     => __( 'New  Book Tag Name' ),
+		'menu_name'         => __( ' Book Tag' ),
 	);
 	$args   = array(
 		'hierarchical'      => true, // make it hierarchical (like categories)
