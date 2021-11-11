@@ -99,5 +99,87 @@ class Book_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/book-public.js', array( 'jquery' ), $this->version, false );
 
 	}
-
+	
+/**
+ * Custom post type funtion for book post type
+ * 
+ * @return void
+ */
+public function Custom_Post_Book() 
+{
+ 
+    // Set UI labels for Custom Post Type
+        $labels = array(
+            'name'                => _x('Book', 'Post Type General Name', 'Bookdomain'),
+            'singular_name'       => _x('Books', 'Post Type Singular Name', 'Bookdomain'),
+            'menu_name'           => __('Books', 'Bookdomain'),
+            'parent_item_colon'   => __('Parent Book', 'Bookdomain'),
+            'all_items'           => __('All Books', 'Bookdomain'),
+            'view_item'           => __('View Book', 'Bookdomain'),
+            'add_new_item'        => __('Add New Book', 'Bookdomain'),
+            'add_new'             => __('Add New', 'Bookdomain'),
+            'edit_item'           => __('Edit Book', 'Bookdomain'),
+            'update_item'         => __('Update Book', 'Bookdomain'),
+            'search_items'        => __('Search Book', 'Bookdomain'),
+            'not_found'           => __('Not Found', 'Bookdomain'),
+            'not_found_in_trash'  => __('Not found in Trash', 'Bookdomain'),
+        );
+         
+        // Set other options for Custom Post Type
+         
+        $args = array(
+            'label'               => __('Books', 'Bookdomain'),
+            'description'         => __('Book news and reviews', 'Bookdomain'),
+            'labels'              => $labels,
+            // Features this CPT supports in Post Editor
+            'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields',),
+            // You can associate this CPT with a taxonomy or custom taxonomy. 
+            'taxonomies'          => array( 'genres' ),
+            /* A hierarchical CPT is like Pages and can have
+            * Parent and child items. A non-hierarchical CPT
+            * is like Posts.
+            */ 
+            'hierarchical'        => false,
+            'public'              => true,
+            'show_ui'             => true,
+            'show_in_menu'        => true,
+            'show_in_nav_menus'   => true,
+            'show_in_admin_bar'   => true,
+            'menu_position'       => 5,
+            'can_export'          => true,
+            'has_archive'         => true,
+            'exclude_from_search' => false,
+            'publicly_queryable'  => true,
+            'capability_type'     => 'post',
+            'show_in_rest' => true,
+     
+        );
+         
+        // Registering your Custom Post Type
+        register_post_type('Books', $args);
+}
+function wporg_register_taxonomy_course() {
+	$labels = array(
+		'name'              => _x( 'Courses', 'taxonomy general name' ),
+		'singular_name'     => _x( 'Course', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search Courses' ),
+		'all_items'         => __( 'All Courses' ),
+		'parent_item'       => __( 'Parent Course' ),
+		'parent_item_colon' => __( 'Parent Course:' ),
+		'edit_item'         => __( 'Edit Course' ),
+		'update_item'       => __( 'Update Course' ),
+		'add_new_item'      => __( 'Add New Course' ),
+		'new_item_name'     => __( 'New Course Name' ),
+		'menu_name'         => __( 'Course' ),
+	);
+	$args   = array(
+		'hierarchical'      => true, // make it hierarchical (like categories)
+		'labels'            => $labels,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => [ 'slug' => 'course' ],
+	);
+	register_taxonomy( 'course', [ 'book' ], $args );
+}
 }
