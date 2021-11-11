@@ -85,6 +85,70 @@ require plugin_dir_path(__FILE__) . 'includes/class-book.php';
 function Run_book() {
     $plugin = new Book();
     $plugin->run();
-
 }
 Run_book();
+/**
+ * Custom post type funtion for book post type
+ * 
+ * @return void
+ */
+function Custom_Post_type() 
+{
+ 
+    // Set UI labels for Custom Post Type
+        $labels = array(
+            'name'                => _x('Book', 'Post Type General Name', 'Bookdomain'),
+            'singular_name'       => _x('Books', 'Post Type Singular Name', 'Bookdomain'),
+            'menu_name'           => __('Books', 'Bookdomain'),
+            'parent_item_colon'   => __('Parent Book', 'Bookdomain'),
+            'all_items'           => __('All Books', 'Bookdomain'),
+            'view_item'           => __('View Book', 'Bookdomain'),
+            'add_new_item'        => __('Add New Book', 'Bookdomain'),
+            'add_new'             => __('Add New', 'Bookdomain'),
+            'edit_item'           => __('Edit Book', 'Bookdomain'),
+            'update_item'         => __('Update Book', 'Bookdomain'),
+            'search_items'        => __('Search Book', 'Bookdomain'),
+            'not_found'           => __('Not Found', 'Bookdomain'),
+            'not_found_in_trash'  => __('Not found in Trash', 'Bookdomain'),
+        );
+         
+        // Set other options for Custom Post Type
+         
+        $args = array(
+            'label'               => __('Books', 'Bookdomain'),
+            'description'         => __('Book news and reviews', 'Bookdomain'),
+            'labels'              => $labels,
+            // Features this CPT supports in Post Editor
+            'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields',),
+            // You can associate this CPT with a taxonomy or custom taxonomy. 
+            'taxonomies'          => array( 'genres' ),
+            /* A hierarchical CPT is like Pages and can have
+            * Parent and child items. A non-hierarchical CPT
+            * is like Posts.
+            */ 
+            'hierarchical'        => false,
+            'public'              => true,
+            'show_ui'             => true,
+            'show_in_menu'        => true,
+            'show_in_nav_menus'   => true,
+            'show_in_admin_bar'   => true,
+            'menu_position'       => 5,
+            'can_export'          => true,
+            'has_archive'         => true,
+            'exclude_from_search' => false,
+            'publicly_queryable'  => true,
+            'capability_type'     => 'post',
+            'show_in_rest' => true,
+     
+        );
+         
+        // Registering your Custom Post Type
+        register_post_type('Books', $args);
+}
+     
+    /* Hook into the 'init' action so that the function
+    * Containing our post type registration is not 
+    * unnecessarily executed. 
+    */
+     
+    add_action('init', 'Custom_Post_type', 0);
