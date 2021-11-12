@@ -179,8 +179,9 @@ public function register_custom_herachical_taxonomy() {
 		'show_admin_column' => true,
 		'query_var'         => true,
 		'rewrite'           => [ 'slug' => 'course' ],
+		'show_in_rest'		=> true,
 	);
-	register_taxonomy( 'course', [ 'book' ], $args );
+	register_taxonomy( 'book_category', [ 'books' ], $args );
 }
 public function register_custom_non_herachical_taxonomy() {
 	$labels = array(
@@ -199,11 +200,12 @@ public function register_custom_non_herachical_taxonomy() {
 	$args   = array(
 		'hierarchical'      => true, // make it hierarchical (like categories)
 		'labels'            => $labels,
+		'show_in_rest'		=> true,
 		'show_ui'           => true,
 		'show_admin_column' => true,
 		'query_var'         => true,
 		'rewrite'           => [ 'slug' => 'course' ],
 	);
-	register_taxonomy( 'course', [ 'book' ], $args );
+	register_taxonomy( 'book_tag', [ 'books' ], $args );
 }
 }
