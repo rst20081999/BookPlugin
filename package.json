@@ -5,11 +5,11 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
-    "@wordpress/scripts":"3.1.0"
+    "@wordpress/scripts": "3.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:scripts":"wp-scripts build"
+    "build:scripts": "wp-scripts build"
   },
   "author": "",
   "license": "ISC"

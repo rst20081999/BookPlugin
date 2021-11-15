@@ -181,6 +181,7 @@ class Book {
   $this->loader->add_action('save_post', $plugin_public, 'custom_meta_box_save');
   $this->loader->add_action('admin_menu', $plugin_public, 'add_book_settings');
   $this->loader->add_action('init', $plugin_public, 'create_Book_shortcode' );
+  $this->loader->add_action('init', $plugin_public, 'custom_gutenburg_block' );
 
 
 

@@ -315,4 +315,32 @@ public function books_shortcode( $atts = [], $content = null,$tag='') {
 	<?php
     return $content;
 }
+public function custom_gutenburg_block(){
+	// automatically load dependencies and version
+    // $asset_file = include_once plugins_url().'/book/widget/build/index.asset.php';
+
+    wp_register_script(
+        'fancy-custom-block-block-editor',
+        plugins_url().'/book/widget/build/index.js',
+        array('wp-element','wp-blocks'),
+    );
+
+    wp_register_style(
+        'fancy-custom-block-block-editor',
+        plugins_url().'/book/widget/editor.css',
+        array()
+    );
+
+    wp_register_style(
+        'fancy-custom-block-block',
+        plugins_url().'/book/widget/editor.css',
+        array()
+    );
+
+    register_block_type( 'fancy-block-plugin/fancy-custom-block', array(
+        'editor_script' => 'fancy-custom-block-block-editor',
+        'editor_style'  => 'fancy-custom-block-block-editor',
+        'style'         => 'fancy-custom-block-block',
+    ) );
+}
 }
