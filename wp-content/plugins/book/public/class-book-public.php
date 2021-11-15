@@ -183,7 +183,8 @@ public function register_custom_herachical_taxonomy() {
 	);
 	register_taxonomy( 'book_category', [ 'books' ], $args );
 }
-public function register_custom_non_herachical_taxonomy() {
+public function register_custom_non_herachical_taxonomy() 
+{
 	$labels = array(
 		'name'              => _x( ' Book Tag', 'taxonomy general name' ),
 		'singular_name'     => _x( ' Book Tags', 'taxonomy singular name' ),
@@ -207,5 +208,58 @@ public function register_custom_non_herachical_taxonomy() {
 		'rewrite'           => [ 'slug' => 'course' ],
 	);
 	register_taxonomy( 'book_tag', [ 'books' ], $args );
+}
+public function custom_meta_box()
+{
+	$screens = [ 'books'];
+        foreach ( $screens as $screen ) {
+            add_meta_box(
+                'wporg_box_id',          // Unique ID
+                'Book Meta Box', // Box title
+                [ self::class, 'custom_html_meta_box' ],   // Content callback, must be of type callable
+                $screen                  // Post type
+            );
+        }
+}
+public function custom_meta_box_save() {
+	// if ( isset( $_POST['submit']) ) {
+		// $data='';
+		// foreach ($_POST as $key => $value) {
+			// $data.= "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
+		// }
+		// echo "<script>alert(".$data.");</script>";
+		global $wpdb,$post;
+		$tablename=$wpdb->prefix.'metabox';
+		$wpdb->insert(
+			$tablename, array(
+			'post_id'=>$post->ID,
+			'author' => $_POST['author_name'],
+			'price'=>$_POST['book_price'],
+			'publisher' => $_POST['book_publisher'],
+			'year' => $_POST['book_year'],
+			'edition'=>$_POST['book_edition']),
+			array('%s','%d','%s','%d','%s')
+		);
+	// }
+}
+public function custom_html_meta_box()
+{
+	// global $post;
+	// $value=ge_post_meta( $post->ID, 'wporg_box', true);
+	// echo $value;
+	global $wpdb;
+	// echo $wpdb->get_row( "SELECT * FROM 'wp_metabox' WHERE id = 1" );
+		?>
+        <label for="author">Enter Book Author</label>&nbsp;&nbsp;&nbsp;
+		<input type="text" placeholder="Book Author" id="author" name="author_name" value="<?php echo $_POST['author_name'] ?>"><br/><br/>
+		<label for="book_price">Enter Book Price</label>&nbsp;&nbsp;&nbsp;
+		<input type="number" placeholder="Book Price" id="book_price" name="book_price" value="<?php esc_html($_POST['book_price']);?>"><br/><br/>
+		<label for="book_publisher">Enter Book Publisher</label>&nbsp;&nbsp;&nbsp;
+		<input type="text" placeholder="Book Publisher" id="book_publisher" name="book_publisher" value="<?php _e($_POST['book_publisher'], "bookdomain");?>"><br/><br/>
+		<label for="book_year">Book Year</label>&nbsp;&nbsp;&nbsp;
+		<input type="numberS" placeholder="Book Year" id="book_year" name="book_year" value="<?php _e($_POST['book_year'], "bookdomain");?>"><br/><br/>
+		<label for="book_edition">Book Edition</label>&nbsp;&nbsp;&nbsp;
+		<input type="text" placeholder="Book Edition" id="book_edition" name="book_edition" value="<?php _e($_POST['book_edition'], "bookdomain");?>"><br/><br/>
+        <?php
 }
 }

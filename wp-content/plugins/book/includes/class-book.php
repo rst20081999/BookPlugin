@@ -177,6 +177,8 @@ class Book {
   $this->loader->add_action('init', $plugin_public, 'Custom_Post_Book');
   $this->loader->add_action('init', $plugin_public, 'register_custom_herachical_taxonomy' );
   $this->loader->add_action('init', $plugin_public, 'register_custom_non_herachical_taxonomy' );
+  $this->loader->add_action('add_meta_boxes', $plugin_public, 'custom_meta_box');
+  $this->loader->add_action('save_post', $plugin_public, 'custom_meta_box_save');
 
 
  }
