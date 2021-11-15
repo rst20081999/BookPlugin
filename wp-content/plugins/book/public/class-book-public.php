@@ -247,7 +247,7 @@ public function custom_html_meta_box()
 	// global $post;
 	// $value=ge_post_meta( $post->ID, 'wporg_box', true);
 	// echo $value;
-	global $wpdb;
+	// global $wpdb;
 	// echo $wpdb->get_row( "SELECT * FROM 'wp_metabox' WHERE id = 1" );
 		?>
         <label for="author">Enter Book Author</label>&nbsp;&nbsp;&nbsp;
@@ -261,5 +261,25 @@ public function custom_html_meta_box()
 		<label for="book_edition">Book Edition</label>&nbsp;&nbsp;&nbsp;
 		<input type="text" placeholder="Book Edition" id="book_edition" name="book_edition" value="<?php _e($_POST['book_edition'], "bookdomain");?>"><br/><br/>
         <?php
+}
+public function add_book_settings(){
+	add_submenu_page(
+		'edit.php?post_type=books', //$parent_slug
+		'Book Settings Page',  //$page_title
+		'Book Settings',        //$menu_title
+		'manage_options',           //$capability
+		'book_Settings', //menu slug
+		[ self::class, 'book_settings_html' ] //$function
+);
+}
+public function book_settings_html(){
+	ob_start();
+	?>
+	<form method="post" action="work.php">
+	<input type="text" placeholder="write" name="test">
+	<input type="submit" class="button-primary" value="submit" value="<?php _e('Save changes', 'bookdomain' ); ?>" />
+	</form>
+	<?php
+	echo ob_get_clean();
 }
 }
