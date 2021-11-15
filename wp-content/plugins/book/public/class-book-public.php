@@ -298,14 +298,20 @@ public function book_settings_html(){
 	<?php
 }
 public function create_Book_shortcode(){
-	add_shortcode('books',[self::class,'books_shortcode']);
+	add_shortcode('books', [self::class,'books_shortcode']);
 
 }
-public function books_shortcode( $atts = [], $content = null) {
+public function books_shortcode( $atts = [], $content = null,$tag='') {
     // do something to $content
     // always return
 	?>
-	<h2>between the shortcode</h2>
+	<div style="border: 1px solid red;">
+	<h4><?php echo $atts['id'] ?></h4>
+	<h4><?php echo $atts['author'] ?></h4>
+	<h4><?php echo $atts['year'] ?></h4>
+	<h4><?php echo $atts['category'] ?></h4>
+	<h4><?php echo $atts['tag'] ?></h4>
+	</div>
 	<?php
     return $content;
 }
