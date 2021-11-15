@@ -273,13 +273,40 @@ public function add_book_settings(){
 );
 }
 public function book_settings_html(){
-	ob_start();
+	if(isset($_POST['currency']) && isset($_POST['no_of_post'])){
+		$currency=$_POST['currency'];
+		$no_of_post=$_POST['no_of_post'];
+		update_option('book_currency', $currency);
+		update_option('book_no_of_post', $no_of_post);
+		echo "done";
+	}
+	$options=get_option('book_currency');
 	?>
-	<form method="post" action="work.php">
-	<input type="text" placeholder="write" name="test">
-	<input type="submit" class="button-primary" value="submit" value="<?php _e('Save changes', 'bookdomain' ); ?>" />
+	<h1>Hii i Am ADMIn</h1>
+	<form method="post">
+	<label for="currency">Currency</label>
+	<select id="currency" name="currency">
+    <option value="₹" <?php selected($options, '₹'); ?>>₹</option>
+    <option value="$" <?php selected($options, '$'); ?>>$</option>
+    <option value="€" <?php selected($options, '€'); ?>>€</option>
+  </select>
+	<br/><br />
+	<label for="no_of_post">No of post per page</label>
+	<input type="number" id="no_of_post" placeholder="Eg. 4 or 5" name="no_of_post"><br/><br/>
+	<input type="submit" class="button-primary" value="<?php _e('Save changes', 'bookdomain' ); ?>" />
 	</form>
 	<?php
-	echo ob_get_clean();
+}
+public function create_Book_shortcode(){
+	add_shortcode('books',[self::class,'books_shortcode']);
+
+}
+public function books_shortcode( $atts = [], $content = null) {
+    // do something to $content
+    // always return
+	?>
+	<h2>between the shortcode</h2>
+	<?php
+    return $content;
 }
 }
