@@ -182,6 +182,7 @@ class Book {
   $this->loader->add_action('admin_menu', $plugin_public, 'add_book_settings');
   $this->loader->add_action('init', $plugin_public, 'create_Book_shortcode' );
   $this->loader->add_action('init', $plugin_public, 'custom_gutenburg_block' );
+  $this->loader->add_action('rest_api_init', $plugin_public, 'my_rest_api_init', 10, 1);
 
 
 
