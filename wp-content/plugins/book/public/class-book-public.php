@@ -240,6 +240,15 @@ public function custom_meta_box_save() {
 			'edition'=>$_POST['book_edition']),
 			array('%s','%d','%s','%d','%s')
 		);
+		$wpdb->update(
+			$tablename, array(
+			'author' => $_POST['author_name'],
+			'price'=>$_POST['book_price'],
+			'publisher' => $_POST['book_publisher'],
+			'year' => $_POST['book_year'],
+			'edition'=>$_POST['book_edition']),
+			array('post_id'=>$post->ID,)
+		);
 	// }
 }
 public function custom_html_meta_box()
@@ -365,8 +374,14 @@ public function my_rest_api_init() {
 		'methods'=>'GET',
 		'permission_callback'=>'__return_true',
 		'callback'=>function($request){
+			$args = array(
+				'taxonomy' => 'book_category',
+				'orderby' => 'name',
+               'order'   => 'ASC'
+			);
+			$cats = get_categories($args);
 			$catPost = get_posts(get_cat_ID("ddd"));
-			return $catPost;
+			return $cats;
 		}
 	));
 }
