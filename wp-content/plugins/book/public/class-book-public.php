@@ -370,18 +370,21 @@ public function my_rest_api_init() {
             return $data;
         },
     ) );
-	register_rest_route('book-plugin/v1','/post',array(
+	register_rest_route('book-plugin/v1','/post/(?P<)',array(
 		'methods'=>'GET',
 		'permission_callback'=>'__return_true',
 		'callback'=>function($request){
-			$args = array(
-				'taxonomy' => 'book_category',
-				'orderby' => 'name',
-               'order'   => 'ASC'
-			);
-			$cats = get_categories($args);
-			$catPost = get_posts(get_cat_ID("ddd"));
-			return $cats;
+			// $args = array(
+				// 'taxonomy' => 'book_category',
+				// 'orderby' => 'name',
+            //    'order'   => 'ASC'
+			// );
+			// $cats = get_categories($args);
+			global $wpdb;
+			$query="SELECT `object_id` FROM `wp_term_relationships` WHERE `term_taxonomy_id`=(SELECT `term_id` from `wp_terms` where `name`='ddd')";
+			$data=$wpdb->get_results($query);
+			// $catPost = get_posts(get_cat_ID("ddd"));
+			return $data;
 		}
 	));
 }
