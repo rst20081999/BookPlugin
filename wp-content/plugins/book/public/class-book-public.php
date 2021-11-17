@@ -181,7 +181,7 @@ public function register_custom_herachical_taxonomy() {
 		'rewrite'           => [ 'slug' => 'course' ],
 		'show_in_rest'		=> true,
 	);
-	register_taxonomy( 'book_category', [ 'books' ], $args );
+	register_taxonomy( 'book_category', [ 'books' ], $args);
 }
 public function register_custom_non_herachical_taxonomy() 
 {
@@ -205,7 +205,7 @@ public function register_custom_non_herachical_taxonomy()
 		'show_ui'           => true,
 		'show_admin_column' => true,
 		'query_var'         => true,
-		'rewrite'           => [ 'slug' => 'course' ],
+		'rewrite'           => [ 'slug' => 'book_tag' ],
 	);
 	register_taxonomy( 'book_tag', [ 'books' ], $args );
 }
@@ -348,7 +348,18 @@ public function my_rest_api_init() {
         'methods'             => 'GET',
         'permission_callback' => '__return_true', // *always set a permission callback
         'callback'            => function ( $request ) {
+			$args = array(
+				'taxonomy' => 'book_category',
+				'orderby' => 'name',
+               'order'   => 'ASC'
+			);
+			$cats = get_categories($args);
+			$data=array();
+			foreach($cats as $cat) {
+				array_push($data,$cat->name);
+			}
             return array(
+				$data,
                 array( 'id' => 1, 'name' => 'Apples', 'price' => '$2' ),
 
                 // I used is_user_logged_in() so you can see that apiFetch() by default
