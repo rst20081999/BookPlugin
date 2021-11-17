@@ -322,7 +322,7 @@ public function custom_gutenburg_block(){
     wp_register_script(
         'fancy-custom-block-block-editor',
         plugins_url().'/book/widget/build/index.js',
-        array('wp-element','wp-blocks','wp-api-fetch'),
+        array('wp-element','wp-blocks','wp-api-fetch','wp-components'),
     );
 
     wp_register_style(
@@ -344,7 +344,7 @@ public function custom_gutenburg_block(){
     ) );
 }
 public function my_rest_api_init() {
-    register_rest_route( 'my-plugin/v1', '/items', array(
+    register_rest_route( 'book-plugin/v1', '/items', array(
         'methods'             => 'GET',
         'permission_callback' => '__return_true', // *always set a permission callback
         'callback'            => function ( $request ) {
@@ -358,16 +358,16 @@ public function my_rest_api_init() {
 			foreach($cats as $cat) {
 				array_push($data,$cat->name);
 			}
-            return array(
-				$data,
-                array( 'id' => 1, 'name' => 'Apples', 'price' => '$2' ),
-
-                // I used is_user_logged_in() so you can see that apiFetch() by default
-                // sends the cookie nonce when making an API request.
-                array( 'id' => 2, 'name' => 'Peaches', // wrapped
-                    'price' => is_user_logged_in() ? 'FREE :)' : '$5' ),
-            );
+            return $data;
         },
     ) );
+	register_rest_route('book-plugin/v1','/post',array(
+		'methods'=>'GET',
+		'permission_callback'=>'__return_true',
+		'callback'=>function($request){
+			$catPost = get_posts(get_cat_ID("ddd"));
+			return $catPost;
+		}
+	));
 }
 }
