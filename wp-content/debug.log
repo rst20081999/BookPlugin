@@ -1,0 +1,1 @@
+[18-Nov-2021 07:19:45 UTC] PHP Deprecated:  Non-static method Book_Public::custom_html_meta_box() should not be called statically in S:\Program Files\XAMPP\htdocs\blog\wp-admin\includes\template.php on line 1395

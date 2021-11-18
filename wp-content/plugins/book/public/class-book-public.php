@@ -251,7 +251,7 @@ public function custom_meta_box_save() {
 		);
 	// }
 }
-public function custom_html_meta_box()
+public static function custom_html_meta_box()
 {
 	// global $post;
 	// $value=ge_post_meta( $post->ID, 'wporg_box', true);
@@ -260,15 +260,15 @@ public function custom_html_meta_box()
 	// echo $wpdb->get_row( "SELECT * FROM 'wp_metabox' WHERE id = 1" );
 		?>
         <label for="author">Enter Book Author</label>&nbsp;&nbsp;&nbsp;
-		<input type="text" placeholder="Book Author" id="author" name="author_name" value="<?php echo $_POST['author_name'] ?>"><br/><br/>
+		<input type="text" placeholder="Book Author" id="author" name="author_name" ><br/><br/>
 		<label for="book_price">Enter Book Price</label>&nbsp;&nbsp;&nbsp;
-		<input type="number" placeholder="Book Price" id="book_price" name="book_price" value="<?php esc_html($_POST['book_price']);?>"><br/><br/>
+		<input type="number" placeholder="Book Price" id="book_price" name="book_price" ><br/><br/>
 		<label for="book_publisher">Enter Book Publisher</label>&nbsp;&nbsp;&nbsp;
-		<input type="text" placeholder="Book Publisher" id="book_publisher" name="book_publisher" value="<?php _e($_POST['book_publisher'], "bookdomain");?>"><br/><br/>
+		<input type="text" placeholder="Book Publisher" id="book_publisher" name="book_publisher"><br/><br/>
 		<label for="book_year">Book Year</label>&nbsp;&nbsp;&nbsp;
-		<input type="numberS" placeholder="Book Year" id="book_year" name="book_year" value="<?php _e($_POST['book_year'], "bookdomain");?>"><br/><br/>
+		<input type="numberS" placeholder="Book Year" id="book_year" name="book_year" ><br/><br/>
 		<label for="book_edition">Book Edition</label>&nbsp;&nbsp;&nbsp;
-		<input type="text" placeholder="Book Edition" id="book_edition" name="book_edition" value="<?php _e($_POST['book_edition'], "bookdomain");?>"><br/><br/>
+		<input type="text" placeholder="Book Edition" id="book_edition" name="book_edition"><br/><br/>
         <?php
 }
 public function add_book_settings(){
@@ -370,21 +370,29 @@ public function my_rest_api_init() {
             return $data;
         },
     ) );
-	register_rest_route('book-plugin/v1','/post/(?P<)',array(
+	register_rest_route('book-plugin/v1','/post/(?P<category>[a-zA-Z0-9]+)',array(
 		'methods'=>'GET',
 		'permission_callback'=>'__return_true',
 		'callback'=>function($request){
-			// $args = array(
-				// 'taxonomy' => 'book_category',
-				// 'orderby' => 'name',
-            //    'order'   => 'ASC'
-			// );
-			// $cats = get_categories($args);
+			$feild=$request['category'];
 			global $wpdb;
-			$query="SELECT `object_id` FROM `wp_term_relationships` WHERE `term_taxonomy_id`=(SELECT `term_id` from `wp_terms` where `name`='ddd')";
-			$data=$wpdb->get_results($query);
-			// $catPost = get_posts(get_cat_ID("ddd"));
-			return $data;
+			$query="SELECT `object_id` FROM `wp_term_relationships` WHERE `term_taxonomy_id`=(SELECT `term_id` from `wp_terms` where `name`='$feild')";
+			$post_ids=$wpdb->get_results($query);
+			$ids=array();
+			foreach($post_ids as $id){
+				array_push($ids,$id->object_id);
+			}
+			// return $ids;
+			
+			// $id=implode(',',$ids);
+			$d=array();
+			foreach($ids as $pid){
+			$query2="SELECT * FROM `wp_metabox` WHERE `post_id`='$pid'";
+			$data=$wpdb->get_results($query2);
+			array_push($d,$data);
+			}
+			return $d;
+
 		}
 	));
 }
