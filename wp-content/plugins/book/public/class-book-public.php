@@ -178,7 +178,7 @@ public function register_custom_herachical_taxonomy() {
 		'show_ui'           => true,
 		'show_admin_column' => true,
 		'query_var'         => true,
-		'rewrite'           => [ 'slug' => 'course' ],
+		'rewrite'           => [ 'slug' => 'book_category' ],
 		'show_in_rest'		=> true,
 	);
 	register_taxonomy( 'book_category', [ 'books' ], $args);
@@ -306,10 +306,6 @@ public function book_settings_html(){
 	</form>
 	<?php
 }
-public function create_Book_shortcode(){
-	add_shortcode('books', [self::class,'books_shortcode']);
-
-}
 public function books_shortcode( $atts = [], $content = null,$tag='') {
     // do something to $content
     // always return
@@ -324,6 +320,11 @@ public function books_shortcode( $atts = [], $content = null,$tag='') {
 	<?php
     return $content;
 }
+public function create_Book_shortcode(){
+	add_shortcode('books', [self::class,'books_shortcode']);
+
+}
+
 public function custom_gutenburg_block(){
 	// automatically load dependencies and version
     // $asset_file = include_once plugins_url().'/book/widget/build/index.asset.php';
