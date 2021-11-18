@@ -306,10 +306,9 @@ public function book_settings_html(){
 	</form>
 	<?php
 }
-public function books_shortcode( $atts = [], $content = null,$tag='') {
-    // do something to $content
-    // always return
-	?>
+public function books_shortcode( $atts = [], $content = null,$tag='')
+{
+		?>
 	<div style="border: 1px solid red;">
 	<h4><?php echo $atts['id'] ?></h4>
 	<h4><?php echo $atts['author'] ?></h4>
