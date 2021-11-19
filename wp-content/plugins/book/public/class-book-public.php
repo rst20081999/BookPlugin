@@ -203,7 +203,7 @@ class Book_Public
             foreach ($ids as $pid) {
                 $query2 = "SELECT * FROM `wp_metabox` WHERE `post_id`='$pid'";
                 $data = $wpdb->get_results($query2);
-                array_push($d, $data);
+                array_push($d, $data[0]);
             }
 
             return $d;
