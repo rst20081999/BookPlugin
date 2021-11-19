@@ -170,6 +170,7 @@ class Book
         $this->loader->add_action('add_meta_boxes', $plugin_public, 'custom_meta_box');
         $this->loader->add_action('save_post', $plugin_public, 'custom_meta_box_save');
         $this->loader->add_action('rest_api_init', $plugin_public, 'my_rest_api_init', 10, 1);
+        $this->loader->add_action('wp_dashboard_setup', $plugin_public, 'book_custom_dashboard_widgets');
     }
 
     /**

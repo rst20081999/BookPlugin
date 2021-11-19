@@ -197,7 +197,6 @@ class Book_Public
                 array_push($ids, $id->object_id);
             }
             // return $ids;
-
             // $id=implode(',',$ids);
             $d = [];
             foreach ($ids as $pid) {
@@ -209,5 +208,32 @@ class Book_Public
             return $d;
         },
     ]);
+    }
+
+    public function book_custom_dashboard_widgets()
+    {
+        global $wp_meta_boxes;
+        wp_add_dashboard_widget('custom_book_widget', 'Book Dashboard Widget', [self::class, 'custom_Dashboard_HTML']);
+    }
+
+    public function custom_Dashboard_HTML()
+    {
+        echo '<p>Hey Buddy, I am HERE</p>';
+        $args = [
+            'taxonomy' => 'book_category',
+            'orderby' => 'count',
+           'order' => 'DESC',
+        ];
+        $cats = get_categories($args);
+        $count = 0;
+        foreach ($cats as $cat) {
+            if ($count == 5) {
+                break;
+            } else {
+                ++$count;
+            }
+            echo $cat->name.'   '.$cat->count;
+            echo '<br/>';
+        }
     }
 }

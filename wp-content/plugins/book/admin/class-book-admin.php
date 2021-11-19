@@ -150,8 +150,25 @@ class Book_Admin
         global $wpdb;
         $query = 'SELECT * FROM `wp_metabox`';
         $data = $wpdb->get_results($query);
+        $newdata = [];
+        if ($atts) {
+            foreach ($atts as $key => $a) {
+                // echo '<script>console.log("'.$key.'")</script>';
+                foreach ($data as $d) {
+                    if ($d->$key == $a) {
+                        array_push($newdata, $d);
+                    }
+                }
+
+                // foreach($data as $d){
+
+        // }
+            }
+            $data = $newdata;
+        } else {
+            // echo '<script>console.log("no data")</script>';
+        }
         $c = '<div><p>i am here</p>';
-        // echo $data;
         foreach ($data as $row) {
             $c .= '
         <div style="border: 1px solid red;">
