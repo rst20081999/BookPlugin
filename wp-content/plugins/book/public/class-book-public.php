@@ -3,8 +3,8 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @see       https://wa.me/+918108981924
- * @since      1.0.0
+ * @see   https://wa.me/+918108981924
+ * @since 1.0.0
  */
 
 /**

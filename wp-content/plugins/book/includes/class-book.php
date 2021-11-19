@@ -6,8 +6,8 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @see       https://wa.me/+918108981924
- * @since      1.0.0
+ * @see   https://wa.me/+918108981924
+ * @since 1.0.0
  */
 
 /**
@@ -19,9 +19,9 @@
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
- * @since      1.0.0
+ * @since 1.0.0
  *
- * @author     RIshabh Tiwari <rishabh.tiwari@hbwsl.com>
+ * @author RIshabh Tiwari <rishabh.tiwari@hbwsl.com>
  */
 class Book
 {
@@ -29,7 +29,7 @@ class Book
      * The loader that's responsible for maintaining and registering all hooks that power
      * the plugin.
      *
-     * @since    1.0.0
+     * @since 1.0.0
      *
      * @var Book_Loader maintains and registers all hooks for the plugin
      */
@@ -38,7 +38,7 @@ class Book
     /**
      * The unique identifier of this plugin.
      *
-     * @since    1.0.0
+     * @since 1.0.0
      *
      * @var string the string used to uniquely identify this plugin
      */
@@ -47,7 +47,7 @@ class Book
     /**
      * The current version of the plugin.
      *
-     * @since    1.0.0
+     * @since 1.0.0
      *
      * @var string the current version of the plugin
      */
@@ -60,7 +60,7 @@ class Book
      * Load the dependencies, define the locale, and set the hooks for the admin area and
      * the public-facing side of the site.
      *
-     * @since    1.0.0
+     * @since 1.0.0
      */
     public function __construct()
     {
@@ -90,7 +90,7 @@ class Book
      * Create an instance of the loader which will be used to register the hooks
      * with WordPress.
      *
-     * @since    1.0.0
+     * @since 1.0.0
      */
     private function load_dependencies()
     {
@@ -126,7 +126,7 @@ class Book
      * Uses the Book_i18n class in order to set the domain and to register the hook
      * with WordPress.
      *
-     * @since    1.0.0
+     * @since 1.0.0
      */
     private function set_locale()
     {
@@ -139,7 +139,7 @@ class Book
      * Register all of the hooks related to the admin area functionality
      * of the plugin.
      *
-     * @since    1.0.0
+     * @since 1.0.0
      */
     private function define_admin_hooks()
     {
@@ -159,7 +159,7 @@ class Book
      * Register all of the hooks related to the public-facing functionality
      * of the plugin.
      *
-     * @since    1.0.0
+     * @since 1.0.0
      */
     private function define_public_hooks()
     {
@@ -176,7 +176,7 @@ class Book
     /**
      * Run the loader to execute all of the hooks with WordPress.
      *
-     * @since    1.0.0
+     * @since 1.0.0
      */
     public function run()
     {
@@ -187,7 +187,7 @@ class Book
      * The name of the plugin used to uniquely identify it within the context of
      * WordPress and to define internationalization functionality.
      *
-     * @since     1.0.0
+     * @since 1.0.0
      *
      * @return string the name of the plugin
      */
@@ -199,7 +199,7 @@ class Book
     /**
      * The reference to the class that orchestrates the hooks with the plugin.
      *
-     * @since     1.0.0
+     * @since 1.0.0
      *
      * @return Book_Loader orchestrates the hooks of the plugin
      */
@@ -211,7 +211,7 @@ class Book
     /**
      * Retrieve the version number of the plugin.
      *
-     * @since     1.0.0
+     * @since 1.0.0
      *
      * @return string the version number of the plugin
      */
