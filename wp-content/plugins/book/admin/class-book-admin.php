@@ -3,8 +3,13 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @see       https://wa.me/+918108981924
- * @since      1.0.0
+ * @category Class_Admin_Book
+ * @package  Class_Admin_Book
+ * @author   RIshabh Tiwari <rishabh.tiwari@hbwsl.com>
+ * @license  opentoall https:
+ * @link     me https:
+ * @see      https://wa.me/+918108981924
+ * @since    1.0.0
  */
 
 /**
@@ -13,14 +18,14 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @author     RIshabh Tiwari <rishabh.tiwari@hbwsl.com>
+ * @author RIshabh Tiwari <rishabh.tiwari@hbwsl.com>
  */
 class Book_Admin
 {
     /**
      * The ID of this plugin.
      *
-     * @since    1.0.0
+     * @since 1.0.0
      *
      * @var string the ID of this plugin
      */
@@ -29,7 +34,7 @@ class Book_Admin
     /**
      * The version of this plugin.
      *
-     * @since    1.0.0
+     * @since 1.0.0
      *
      * @var string the current version of this plugin
      */
@@ -38,7 +43,7 @@ class Book_Admin
     /**
      * Initialize the class and set its properties.
      *
-     * @since    1.0.0
+     * @since 1.0.0
      *
      * @param string $plugin_name the name of this plugin
      * @param string $version     the version of this plugin
@@ -52,7 +57,7 @@ class Book_Admin
     /**
      * Register the stylesheets for the admin area.
      *
-     * @since    1.0.0
+     * @since 1.0.0
      */
     public function enqueue_styles()
     {
@@ -74,7 +79,7 @@ class Book_Admin
     /**
      * Register the JavaScript for the admin area.
      *
-     * @since    1.0.0
+     * @since 1.0.0
      */
     public function enqueue_scripts()
     {
@@ -162,7 +167,7 @@ class Book_Admin
 
                 // foreach($data as $d){
 
-        // }
+                // }
             }
             $data = $newdata;
         } else {
@@ -197,28 +202,30 @@ class Book_Admin
         // $asset_file = include_once plugins_url().'/book/widget/build/index.asset.php';
 
         wp_register_script(
-        'fancy-custom-block-block-editor',
-        plugins_url().'/book/widget/build/index.js',
-        ['wp-element', 'wp-blocks', 'wp-api-fetch', 'wp-components'],
+            'fancy-custom-block-block-editor',
+            plugins_url().'/book/widget/build/index.js',
+            ['wp-element', 'wp-blocks', 'wp-api-fetch', 'wp-components'],
         );
 
         wp_register_style(
-        'fancy-custom-block-block-editor',
-        plugins_url().'/book/widget/editor.css',
-        []
+            'fancy-custom-block-block-editor',
+            plugins_url().'/book/widget/editor.css',
+            []
         );
 
         wp_register_style(
-        'fancy-custom-block-block',
-        plugins_url().'/book/widget/editor.css',
-        []
+            'fancy-custom-block-block',
+            plugins_url().'/book/widget/editor.css',
+            []
         );
 
-        register_block_type('fancy-block-plugin/fancy-custom-block', [
-        'editor_script' => 'fancy-custom-block-block-editor',
-        'editor_style' => 'fancy-custom-block-block-editor',
-        'style' => 'fancy-custom-block-block',
-    ]);
+        register_block_type(
+            'fancy-block-plugin/fancy-custom-block', [
+            'editor_script' => 'fancy-custom-block-block-editor',
+            'editor_style' => 'fancy-custom-block-block-editor',
+            'style' => 'fancy-custom-block-block',
+            ]
+        );
     }
 
     public function register_custom_herachical_taxonomy()
@@ -262,7 +269,7 @@ class Book_Admin
         'add_new_item' => __('Add New  Book Tag'),
         'new_item_name' => __('New  Book Tag Name'),
         'menu_name' => __(' Book Tag'),
-    ];
+        ];
         $args = [
         'hierarchical' => true, // make it hierarchical (like categories)
         'labels' => $labels,
@@ -271,20 +278,20 @@ class Book_Admin
         'show_admin_column' => true,
         'query_var' => true,
         'rewrite' => ['slug' => 'book_tag'],
-    ];
+        ];
         register_taxonomy('book_tag', ['books'], $args);
     }
 
     public function add_book_settings()
     {
         add_submenu_page(
-        'edit.php?post_type=books', //$parent_slug
-        'Book Settings Page',  //$page_title
-        'Book Settings',        //$menu_title
-        'manage_options',           //$capability
-        'book_Settings', //menu slug
-        [self::class, 'book_settings_html'] //$function
-);
+            'edit.php?post_type=books', //$parent_slug
+            'Book Settings Page',  //$page_title
+            'Book Settings',        //$menu_title
+            'manage_options',           //$capability
+            'book_Settings', //menu slug
+            [self::class, 'book_settings_html'] //$function
+        );
     }
 
     public function book_settings_html()
@@ -297,19 +304,19 @@ class Book_Admin
             echo 'done';
         }
         $options = get_option('book_currency'); ?>
-	<h1>Hii i Am ADMIn</h1>
-	<form method="post">
-	<label for="currency">Currency</label>
-	<select id="currency" name="currency">
+    <h1>Hii i Am ADMIn</h1>
+    <form method="post">
+    <label for="currency">Currency</label>
+    <select id="currency" name="currency">
     <option value="₹" <?php selected($options, '₹'); ?>>₹</option>
     <option value="$" <?php selected($options, '$'); ?>>$</option>
     <option value="€" <?php selected($options, '€'); ?>>€</option>
   </select>
-	<br/><br />
-	<label for="no_of_post">No of post per page</label>
-	<input type="number" id="no_of_post" placeholder="Eg. 4 or 5" name="no_of_post"><br/><br/>
-	<input type="submit" class="button-primary" value="<?php _e('Save changes', 'bookdomain'); ?>" />
-	</form>
-	<?php
+    <br/><br />
+    <label for="no_of_post">No of post per page</label>
+    <input type="number" id="no_of_post" placeholder="Eg. 4 or 5" name="no_of_post"><br/><br/>
+    <input type="submit" class="button-primary" value="<?php _e('Save changes', 'bookdomain'); ?>" />
+    </form>
+        <?php
     }
 }
