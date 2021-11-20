@@ -1,6 +1,25 @@
+.wp-block-my-block-cool-block-name{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; */
+    height: max-content;
+    width: 300px !important;
+    display: block;
+    position:absolute;
+    right:0;
+    /* top:0; */
+    /* background-color: #f1f1f1;
+   padding: 20px;
+   border: 3px solid #494949;
+   -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+   -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+   box-shadow: 5px 40px -10px rgba(0,0,0,0.57); */
+}
 .bookdiv{
-    display:flex;
     border:2px solid red;
     margin: 5px;
     width:200px;
+}
+#post_id{
+    margin: 5px;
 }

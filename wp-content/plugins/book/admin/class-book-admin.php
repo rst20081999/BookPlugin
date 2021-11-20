@@ -204,7 +204,7 @@ class Book_Admin
         wp_register_script(
             'custom-block-script',
             plugins_url().'/book/widget/build/index.js',
-            ['wp-element', 'wp-blocks', 'wp-api-fetch', 'wp-components'],
+            ['wp-element', 'wp-blocks', 'wp-api-fetch', 'wp-components', 'wp-block-editor'],
         );
 
         wp_register_style(
