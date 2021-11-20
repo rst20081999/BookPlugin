@@ -7,15 +7,16 @@
  * @package  Class_Admin_Book
  * @author   RIshabh Tiwari <rishabh.tiwari@hbwsl.com>
  * @license  opentoall https:
- * @link     me https:
  * @see      https://wa.me/+918108981924
+ * @link     me https:
+ * @_version 5.4
  * @since    1.0.0
  */
 
 /**
  * The admin-specific functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
+ * Defines the plugin name, _version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
  * @author RIshabh Tiwari <rishabh.tiwari@hbwsl.com>
@@ -29,29 +30,29 @@ class Book_Admin
      *
      * @var string the ID of this plugin
      */
-    private $plugin_name;
+    private $_plugin_name;
 
     /**
-     * The version of this plugin.
+     * The _version of this plugin.
      *
      * @since 1.0.0
      *
-     * @var string the current version of this plugin
+     * @var string the current _version of this plugin
      */
-    private $version;
+    private $_version;
 
     /**
      * Initialize the class and set its properties.
      *
      * @since 1.0.0
      *
-     * @param string $plugin_name the name of this plugin
-     * @param string $version     the version of this plugin
+     * @param string $_plugin_name the name of this plugin
+     * @param string $_version     the _version of this plugin
      */
-    public function __construct($plugin_name, $version)
+    public function __construct($_plugin_name, $_version)
     {
-        $this->plugin_name = $plugin_name;
-        $this->version = $version;
+        $this->_plugin_name = $_plugin_name;
+        $this->_version = $_version;
     }
 
     /**
@@ -73,7 +74,7 @@ class Book_Admin
          * class.
          */
 
-        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__).'css/book-admin.css', [], $this->version, 'all');
+        wp_enqueue_style($this->_plugin_name, plugin_dir_url(__FILE__).'css/book-admin.css', [], $this->_version, 'all');
     }
 
     /**
@@ -95,10 +96,10 @@ class Book_Admin
          * class.
          */
 
-        wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__).'js/book-admin.js', ['jquery'], $this->version, false);
+        wp_enqueue_script($this->_plugin_name, plugin_dir_url(__FILE__).'js/book-admin.js', ['jquery'], $this->_version, false);
     }
 
-    public function Custom_Post_Book()
+    public function custom_Post_Book()
     {
         // Set UI labels for Custom Post Type
         $labels = [
@@ -198,7 +199,7 @@ class Book_Admin
 
     public function custom_gutenburg_block()
     {
-        // automatically load dependencies and version
+        // automatically load dependencies and _version
         // $asset_file = include_once plugins_url().'/book/widget/build/index.asset.php';
 
         wp_register_script(

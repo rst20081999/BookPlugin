@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:scripts": "wp-scripts build"
+    "build:scripts": "wp-scripts build",
+    "start":"wp-scripts start" 
   },
   "author": "",
   "license": "ISC"
