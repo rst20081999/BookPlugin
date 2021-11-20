@@ -202,28 +202,28 @@ class Book_Admin
         // $asset_file = include_once plugins_url().'/book/widget/build/index.asset.php';
 
         wp_register_script(
-            'fancy-custom-block-block-editor',
+            'custom-block-script',
             plugins_url().'/book/widget/build/index.js',
             ['wp-element', 'wp-blocks', 'wp-api-fetch', 'wp-components'],
         );
 
         wp_register_style(
-            'fancy-custom-block-block-editor',
+            'custom-editor-css',
             plugins_url().'/book/widget/editor.css',
             []
         );
 
         wp_register_style(
-            'fancy-custom-block-block',
-            plugins_url().'/book/widget/editor.css',
+            'custom-style-css',
+            plugins_url().'/book/widget/style.css',
             []
         );
 
         register_block_type(
             'fancy-block-plugin/fancy-custom-block', [
-            'editor_script' => 'fancy-custom-block-block-editor',
-            'editor_style' => 'fancy-custom-block-block-editor',
-            'style' => 'fancy-custom-block-block',
+            'editor_script' => 'custom-block-script',
+            'editor_style' => 'custom-editor-css',
+            'style' => 'custom-style-css',
             ]
         );
     }
