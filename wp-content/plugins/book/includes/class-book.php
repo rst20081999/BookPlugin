@@ -147,12 +147,12 @@ class Book
 
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
-        $this->loader->add_action('init', $plugin_admin, 'custom_Post_Book');
+        $this->loader->add_action('init', $plugin_admin, 'customPostBook');
         $this->loader->add_action('init', $plugin_admin, 'create_Book_shortcode');
         $this->loader->add_action('init', $plugin_admin, 'custom_gutenburg_block');
         $this->loader->add_action('init', $plugin_admin, 'register_custom_herachical_taxonomy');
-        $this->loader->add_action('init', $plugin_admin, 'register_custom_non_herachical_taxonomy');
-        $this->loader->add_action('admin_menu', $plugin_admin, 'add_book_settings');
+        $this->loader->add_action('init', $plugin_admin, 'registerCustomNonherachicalTaxonomy');
+        $this->loader->add_action('admin_menu', $plugin_admin, 'addBookSettings');
     }
 
     /**

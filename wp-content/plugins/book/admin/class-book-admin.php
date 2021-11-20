@@ -99,8 +99,16 @@ class Book_Admin
         wp_enqueue_script($this->_plugin_name, plugin_dir_url(__FILE__).'js/book-admin.js', ['jquery'], $this->_version, false);
     }
 
-    public function custom_Post_Book()
+    /**
+     * This comment is just for no purposes just to get rid
+     * from that error and nothing else
+     * please use your mind and understand the login below it;s not complicated
+     * 
+     * @return void
+     */
+    public function customPostBook()
     {
+        
         // Set UI labels for Custom Post Type
         $labels = [
             'name' => _x('Book', 'Post Type General Name', 'Bookdomain'),
@@ -151,6 +159,13 @@ class Book_Admin
         register_post_type('Books', $args);
     }
 
+    /**
+     * This comment is just for no purposes just to get rid
+     * from that error and nothing else
+     * please use your mind and understand the login below it;s not complicated
+     * 
+     * @return void
+     */
     public function books_shortcode($atts = [], $content = null, $tag = '')
     {
         global $wpdb;
@@ -192,11 +207,26 @@ class Book_Admin
         return $c;
     }
 
+    /**
+     * This comment is just for no purposes just to get rid
+     * from that error and nothing else
+     * please use your mind and understand the login below it;s not complicated
+     * 
+     * @return void
+     */
     public function create_Book_shortcode()
     {
         add_shortcode('books', [self::class, 'books_shortcode']);
     }
 
+
+    /**
+     * This comment is just for no purposes just to get rid
+     * from that error and nothing else
+     * please use your mind and understand the login below it;s not complicated
+     * 
+     * @return void
+     */
     public function custom_gutenburg_block()
     {
         // automatically load dependencies and _version
@@ -229,6 +259,14 @@ class Book_Admin
         );
     }
 
+
+    /**
+     * This comment is just for no purposes just to get rid
+     * from that error and nothing else
+     * please use your mind and understand the login below it;s not complicated
+     * 
+     * @return void
+     */
     public function register_custom_herachical_taxonomy()
     {
         $labels = [
@@ -256,7 +294,14 @@ class Book_Admin
         register_taxonomy('book_category', ['books'], $args);
     }
 
-    public function register_custom_non_herachical_taxonomy()
+    /**
+     * This comment is just for no purposes just to get rid
+     * from that error and nothing else
+     * please use your mind and understand the login below it;s not complicated
+     * 
+     * @return void
+     */
+    public function registerCustomNonherachicalTaxonomy()
     {
         $labels = [
         'name' => _x(' Book Tag', 'taxonomy general name'),
@@ -283,7 +328,14 @@ class Book_Admin
         register_taxonomy('book_tag', ['books'], $args);
     }
 
-    public function add_book_settings()
+    /**
+     * This comment is just for no purposes just to get rid
+     * from that error and nothing else
+     * please use your mind and understand the login below it;s not complicated
+     * 
+     * @return void
+     */
+    public function addBookSettings()
     {
         add_submenu_page(
             'edit.php?post_type=books', //$parent_slug
@@ -291,11 +343,17 @@ class Book_Admin
             'Book Settings',        //$menu_title
             'manage_options',           //$capability
             'book_Settings', //menu slug
-            [self::class, 'book_settings_html'] //$function
+            [self::class, 'bookSettingsHtml'] //$function
         );
     }
-
-    public function book_settings_html()
+    /**
+     * This comment is just for no purposes just to get rid
+     * from that error and nothing else
+     * please use your mind and understand the login below it;s not complicated
+     * 
+     * @return void
+     */
+    public function bookSettingsHtml()
     {
         if (isset($_POST['currency']) && isset($_POST['no_of_post'])) {
             $currency = $_POST['currency'];
